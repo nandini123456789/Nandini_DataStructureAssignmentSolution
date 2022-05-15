@@ -26,28 +26,32 @@ public class Skyscrapper {
 		for (int j=0;j<temp;j++) {
 			System.out.println("Day: "+(j+1));
 			floorstack.push(floorArray[j]);
-			floorstack= floorpopArray(floorstack, temp-j);
+			int day=temp-j;
+			floorstack= floorpopArray(floorstack, day );
 		}
 	}
 
 	public static Stack<Integer> floorpopArray(Stack<Integer> floorstack, int i) {
 		Stack<Integer> temp=new Stack<>();
 		ArrayList<Integer> arrtemp=new ArrayList<>();
-		 while (!floorstack.isEmpty()) {
-			// System.out.println("floorstack" +floorstack);
-			// System.out.println(i);
+		while (!floorstack.isEmpty()) {
+			// System.out.println("initialfloorstack" + floorstack);
 			 int a=floorstack.pop();
-			 if (a==floors) {
+			 if (a>=floors) {
 				 arrtemp.add(a);
 			     floors--;
 			     }
 			 else {
 				 temp.push(a);
 			 }
-				 
 		 }
 		 floorstack=temp;
-		 System.out.println("floorstack" + floorstack);
+		 //10System.out.println("floors: " +floors +"i:"+i  );
+		 if (i==1) {
+			 while (!floorstack.isEmpty())
+			   arrtemp.add(floorstack.pop()); 
+		 }
+		 //System.out.println("floorstack" + floorstack);
 		 Collections.sort(arrtemp, Collections.reverseOrder());
 		 System.out.println(arrtemp);
 		 return floorstack;
